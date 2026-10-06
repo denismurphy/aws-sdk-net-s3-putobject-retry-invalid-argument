@@ -1,0 +1,47 @@
+# cmd (in container): 12 x  dotnet run -c Release --no-build -- 300 0 http   (Ubuntu 24.04.5, Linux 7.0.14 aarch64, .NET 10.0.12, AWSSDK.S3 4.0.104 / Core 4.0.102.8, 2026-10-06)
+# Totals: 12 runs, 3600 uploads, 5 bodies accepted with decodedLength=0 (outcome B), 403 Invalid-argument attempts, 8 failed uploads
+PRETTY_NAME="Ubuntu 24.04.5 LTS"
+Linux 7.0.14-orbstack-00380-ga7e0a2dc9535 aarch64
+Microsoft.NETCore.App 10.0.12 [/usr/share/dotnet/shared/Microsoft.NETCore.App]
+
+Time Elapsed 00:00:03.37
+## run 1: -- 300 0 http
+scheme=http uploads=300 busyWorkers=0 resets=300 failedAttempts=342 invalidArgumentAttempts=42 succeeded=300 failed=0 bodiesAccepted=300 bodyMismatches=0
+## run 2: -- 300 0 http
+scheme=http uploads=300 busyWorkers=0 resets=300 failedAttempts=337 invalidArgumentAttempts=37 succeeded=300 failed=0 bodiesAccepted=300 bodyMismatches=0
+## run 3: -- 300 0 http
+scheme=http uploads=300 busyWorkers=0 resets=300 failedAttempts=322 invalidArgumentAttempts=22 succeeded=300 failed=0 bodiesAccepted=300 bodyMismatches=0
+## run 4: -- 300 0 http
+scheme=http uploads=300 busyWorkers=0 resets=300 failedAttempts=334 invalidArgumentAttempts=34 succeeded=300 failed=0 bodiesAccepted=300 bodyMismatches=0
+## run 5: -- 300 0 http
+scheme=http uploads=300 busyWorkers=0 resets=300 failedAttempts=336 invalidArgumentAttempts=35 succeeded=299 failed=1 bodiesAccepted=299 bodyMismatches=1
+BODY MISMATCH: key=/bucket/part-0020 expectedLength=200 decodedLength=0 firstDifferentByte=-1
+  headers: Expect: 100-continue | amz-sdk-invocation-id: 699eaf90-dce9-40e3-90a1-d5066046a4b4 | amz-sdk-request: attempt=1; max=3 | x-amz-sdk-checksum-algorithm: CRC32 | Host: localhost:37141 | X-Amz-Date: 20261006T180353Z | X-Amz-Trailer: x-amz-checksum-crc32 | X-Amz-Decoded-Content-Length: 200 | X-Amz-Content-SHA256: STREAMING-AWS4-HMAC-SHA256-PAYLOAD-TRAILER | Authorization: AWS4-HMAC-SHA256 Credential=AKIDEXAMPLE/20261006/us-east-1/s3/aws4_request, SignedHeaders=content-encoding;content-length;content-type;host;x-amz-content-sha256;x-amz-date;x-amz-decoded-content-length;x-amz-sdk-checksum-algorithm;x-amz-trailer, Signature=4b78ced0c8c9fc0403d4b861a02b3e5588fa51c3457f5d4bc82357304a73cc2d
+  raw body (207 bytes): 303B6368756E6B2D7369676E61747572653D313039366531313139633162626635383864303639396237643036323665656565373662353365373630663730636439306432386531313765653036323666620D0A782D616D7A2D636865636B73756D2D63726333323A4141414141413D3D0D0A782D616D7A2D747261696C65722D7369676E61747572653A383032643735643461396634616264373431326337323564326466653661373930366639383639373564336233666238633138346461386265316535336639630D0A0D0A
+## run 6: -- 300 0 http
+scheme=http uploads=300 busyWorkers=0 resets=300 failedAttempts=331 invalidArgumentAttempts=31 succeeded=300 failed=0 bodiesAccepted=300 bodyMismatches=0
+## run 7: -- 300 0 http
+scheme=http uploads=300 busyWorkers=0 resets=300 failedAttempts=335 invalidArgumentAttempts=34 succeeded=299 failed=1 bodiesAccepted=299 bodyMismatches=1
+BODY MISMATCH: key=/bucket/part-0269 expectedLength=200 decodedLength=0 firstDifferentByte=-1
+  headers: Expect: 100-continue | amz-sdk-invocation-id: 28a4fa05-9e2b-4c42-a5f4-724b46cd5345 | amz-sdk-request: attempt=1; max=3 | x-amz-sdk-checksum-algorithm: CRC32 | Host: localhost:41245 | X-Amz-Date: 20261006T180446Z | X-Amz-Trailer: x-amz-checksum-crc32 | X-Amz-Decoded-Content-Length: 200 | X-Amz-Content-SHA256: STREAMING-AWS4-HMAC-SHA256-PAYLOAD-TRAILER | Authorization: AWS4-HMAC-SHA256 Credential=AKIDEXAMPLE/20261006/us-east-1/s3/aws4_request, SignedHeaders=content-encoding;content-length;content-type;host;x-amz-content-sha256;x-amz-date;x-amz-decoded-content-length;x-amz-sdk-checksum-algorithm;x-amz-trailer, Signature=f4588027903113a488af39bc9b33cdd7fc7260e380408befddef7ff4bee65b7c
+  raw body (207 bytes): 303B6368756E6B2D7369676E61747572653D653638663733326330373865373838383930643665306539333536313332303338643565393534386131336533366330623038343338356332633936393432360D0A782D616D7A2D636865636B73756D2D63726333323A4141414141413D3D0D0A782D616D7A2D747261696C65722D7369676E61747572653A663338663133363935653031396363346663633631386362313235613739323534393930326235613566373461366166623766313063623963626665663536370D0A0D0A
+## run 8: -- 300 0 http
+scheme=http uploads=300 busyWorkers=0 resets=300 failedAttempts=328 invalidArgumentAttempts=28 succeeded=300 failed=0 bodiesAccepted=300 bodyMismatches=1
+BODY MISMATCH: key=/bucket/part-0198 expectedLength=200 decodedLength=0 firstDifferentByte=-1
+  headers: Expect: 100-continue | amz-sdk-invocation-id: a43bf2f1-9619-48c0-836d-9a69d6269c0c | amz-sdk-request: attempt=1; max=3 | x-amz-sdk-checksum-algorithm: CRC32 | Host: localhost:44043 | X-Amz-Date: 20261006T180503Z | X-Amz-Trailer: x-amz-checksum-crc32 | X-Amz-Decoded-Content-Length: 200 | X-Amz-Content-SHA256: STREAMING-AWS4-HMAC-SHA256-PAYLOAD-TRAILER | Authorization: AWS4-HMAC-SHA256 Credential=AKIDEXAMPLE/20261006/us-east-1/s3/aws4_request, SignedHeaders=content-encoding;content-length;content-type;host;x-amz-content-sha256;x-amz-date;x-amz-decoded-content-length;x-amz-sdk-checksum-algorithm;x-amz-trailer, Signature=98faaf7613706446a91fb1639b9d75bfed2d9cde455109396fca448909714af5
+  raw body (207 bytes): 303B6368756E6B2D7369676E61747572653D376539346264623837316661653862623031356434323430636538313630313462626161636565373866373361616431343862303662373564323065393239390D0A782D616D7A2D636865636B73756D2D63726333323A4141414141413D3D0D0A782D616D7A2D747261696C65722D7369676E61747572653A303732353333383332303033343338346236613165653531613862396533363061616235353335356538623866626663383862363763626433393336613437610D0A0D0A
+## run 9: -- 300 0 http
+scheme=http uploads=300 busyWorkers=0 resets=300 failedAttempts=334 invalidArgumentAttempts=33 succeeded=299 failed=1 bodiesAccepted=299 bodyMismatches=0
+## run 10: -- 300 0 http
+scheme=http uploads=300 busyWorkers=0 resets=300 failedAttempts=338 invalidArgumentAttempts=38 succeeded=300 failed=0 bodiesAccepted=300 bodyMismatches=1
+BODY MISMATCH: key=/bucket/part-0099 expectedLength=200 decodedLength=0 firstDifferentByte=-1
+  headers: Expect: 100-continue | amz-sdk-invocation-id: f8404804-fc18-4ba6-ac2f-025c41c6cd44 | amz-sdk-request: attempt=1; max=3 | x-amz-sdk-checksum-algorithm: CRC32 | Host: localhost:41329 | X-Amz-Date: 20261006T180538Z | X-Amz-Trailer: x-amz-checksum-crc32 | X-Amz-Decoded-Content-Length: 200 | X-Amz-Content-SHA256: STREAMING-AWS4-HMAC-SHA256-PAYLOAD-TRAILER | Authorization: AWS4-HMAC-SHA256 Credential=AKIDEXAMPLE/20261006/us-east-1/s3/aws4_request, SignedHeaders=content-encoding;content-length;content-type;host;x-amz-content-sha256;x-amz-date;x-amz-decoded-content-length;x-amz-sdk-checksum-algorithm;x-amz-trailer, Signature=7eff0b48021377db9e3c560f5c1781f21d85037b9ba1c7beed8a118fa05a6c6d
+  raw body (207 bytes): 303B6368756E6B2D7369676E61747572653D633262346537646162663163633030336632303738653033353831343466353562663436306138646232356263366234346361323136313634396333313766350D0A782D616D7A2D636865636B73756D2D63726333323A4141414141413D3D0D0A782D616D7A2D747261696C65722D7369676E61747572653A363139643663643832326339633634333935386465383732303437376436356162336132653761376139393164613263633035386536363136316531613962360D0A0D0A
+## run 11: -- 300 0 http
+scheme=http uploads=300 busyWorkers=0 resets=300 failedAttempts=330 invalidArgumentAttempts=26 succeeded=296 failed=4 bodiesAccepted=296 bodyMismatches=1
+BODY MISMATCH: key=/bucket/part-0021 expectedLength=200 decodedLength=0 firstDifferentByte=-1
+  headers: Expect: 100-continue | amz-sdk-invocation-id: 52b61f89-0712-4d51-92b1-0464400595a8 | amz-sdk-request: attempt=1; max=3 | x-amz-sdk-checksum-algorithm: CRC32 | Host: localhost:41643 | X-Amz-Date: 20261006T180550Z | X-Amz-Trailer: x-amz-checksum-crc32 | X-Amz-Decoded-Content-Length: 200 | X-Amz-Content-SHA256: STREAMING-AWS4-HMAC-SHA256-PAYLOAD-TRAILER | Authorization: AWS4-HMAC-SHA256 Credential=AKIDEXAMPLE/20261006/us-east-1/s3/aws4_request, SignedHeaders=content-encoding;content-length;content-type;host;x-amz-content-sha256;x-amz-date;x-amz-decoded-content-length;x-amz-sdk-checksum-algorithm;x-amz-trailer, Signature=a4f3f8240dc2005bc60e895fe0f978b00fa5e8799d2838abfd36e602b96b84a7
+  raw body (207 bytes): 303B6368756E6B2D7369676E61747572653D373938386165633164363035396133326266346332303863616561336465326361636166636566623837373966646338303739316330643535393638646135350D0A782D616D7A2D636865636B73756D2D63726333323A4141414141413D3D0D0A782D616D7A2D747261696C65722D7369676E61747572653A363163313334363332613764623765313832333236343066303831333039363164396237653261346132316666626531356263346261383563333466626566370D0A0D0A
+## run 12: -- 300 0 http
+scheme=http uploads=300 busyWorkers=0 resets=300 failedAttempts=344 invalidArgumentAttempts=43 succeeded=299 failed=1 bodiesAccepted=299 bodyMismatches=0
+exit=0

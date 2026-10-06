@@ -1,0 +1,19 @@
+# macOS 27.0 arm64, .NET 10, 2026-10-06. https, 200 uploads each. Package versions from obj/project.assets.json.
+## AWSSDK.S3 4.0.104.1 (AWSSDK.Core 4.0.102.8): busy = '-- 200 20 https', idle = '-- 200 0 https'
+scheme=https uploads=200 busyWorkers=20 resets=200 failedAttempts=398 invalidArgumentAttempts=198 succeeded=127 failed=73 bodiesAccepted=127 bodyMismatches=0
+scheme=https uploads=200 busyWorkers=0 resets=200 failedAttempts=203 invalidArgumentAttempts=3 succeeded=200 failed=0 bodiesAccepted=200 bodyMismatches=0
+## AWSSDK.S3 3.7.511.8 (AWSSDK.Core 3.7.501.1): same commands, unmodified Program.cs. 'Invalid argument' attempts DO occur (3-8 idle, 54-56 busy),
+## but most failed uploads here are plain "IOException: Unable to read data from the transport connection: Connection reset by peer",
+## so the failed-upload counts below are NOT attributable to this bug alone on 3.x.
+## run 1: busy
+scheme=https uploads=200 busyWorkers=20 resets=200 failedAttempts=254 invalidArgumentAttempts=54 succeeded=57 failed=143 bodiesAccepted=57 bodyMismatches=0
+## run 1: idle
+scheme=https uploads=200 busyWorkers=0 resets=200 failedAttempts=204 invalidArgumentAttempts=4 succeeded=119 failed=81 bodiesAccepted=119 bodyMismatches=0
+## run 2: idle, 100 uploads
+scheme=https uploads=100 busyWorkers=0 resets=100 failedAttempts=101 invalidArgumentAttempts=1 succeeded=100 failed=0 bodiesAccepted=100 bodyMismatches=0
+## run 3: busy / idle
+scheme=https uploads=200 busyWorkers=20 resets=200 failedAttempts=256 invalidArgumentAttempts=56 succeeded=55 failed=145 bodiesAccepted=55 bodyMismatches=0
+scheme=https uploads=200 busyWorkers=0 resets=200 failedAttempts=203 invalidArgumentAttempts=3 succeeded=121 failed=79 bodiesAccepted=121 bodyMismatches=0
+## run 4: busy / idle
+scheme=https uploads=200 busyWorkers=20 resets=200 failedAttempts=256 invalidArgumentAttempts=56 succeeded=55 failed=145 bodiesAccepted=55 bodyMismatches=0
+scheme=https uploads=200 busyWorkers=0 resets=200 failedAttempts=208 invalidArgumentAttempts=8 succeeded=114 failed=86 bodiesAccepted=114 bodyMismatches=0

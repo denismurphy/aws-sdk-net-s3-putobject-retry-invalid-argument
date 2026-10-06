@@ -1,0 +1,20 @@
+# cmds (in order): -- 200 0 https | -- 200 20 https | -- 200 0 http | -- 200 20 http  (one line each, then the first 'Invalid argument' stack trace)
+# OS: Ubuntu 24.04.5 container (Linux 7.0.14, aarch64) | .NET runtime 10.0.12 | AWSSDK.S3 4.0.104 / AWSSDK.Core 4.0.102.8 | recorded 2026-10-06
+scheme=https uploads=200 busyWorkers=0 resets=200 failedAttempts=207 invalidArgumentAttempts=7 succeeded=200 failed=0 bodiesAccepted=200 bodyMismatches=0
+scheme=https uploads=200 busyWorkers=20 resets=200 failedAttempts=308 invalidArgumentAttempts=108 succeeded=200 failed=0 bodiesAccepted=200 bodyMismatches=0
+scheme=http uploads=200 busyWorkers=0 resets=200 failedAttempts=219 invalidArgumentAttempts=19 succeeded=200 failed=0 bodiesAccepted=200 bodyMismatches=1
+scheme=http uploads=200 busyWorkers=20 resets=200 failedAttempts=369 invalidArgumentAttempts=168 succeeded=163 failed=37 bodiesAccepted=163 bodyMismatches=0
+System.Net.Http.HttpRequestException: Error while copying content to a stream.
+ ---> System.IO.IOException: Invalid argument : '/tmp/putobject-repro-rrsjBW/part-0020'
+   at System.IO.RandomAccess.ReadAtOffset(SafeFileHandle handle, Span`1 buffer, Int64 fileOffset)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.ThreadPoolValueTaskSource.ExecuteInternal()
+--- End of stack trace from previous location ---
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.ThreadPoolValueTaskSource.GetResult(Int16 token)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.ThreadPoolValueTaskSource.System.Threading.Tasks.Sources.IValueTaskSource<System.Int32>.GetResult(Int16 token)
+   at System.Threading.Tasks.ValueTask`1.ValueTaskSourceAsTask.<>c.<.cctor>b__4_0(Object state)
+--- End of stack trace from previous location ---
+   at Amazon.Runtime.Internal.Util.ChunkedUploadWrapperStream.FillInputBufferAsync(CancellationToken cancellationToken)
+   at Amazon.Runtime.Internal.Util.ChunkedUploadWrapperStream.ReadAsync(Byte[] buffer, Int32 offset, Int32 count, CancellationToken cancellationToken)
+   at System.IO.Stream.<CopyToAsync>g__Core|30_0(Stream source, Stream destination, Int32 bufferSize, CancellationToken cancellationToken)
+   at System.Net.Http.StreamToStreamCopy.<CopyAsync>g__DisposeSourceAsync|1_0(Task copyTask, Stream source)
+   at System.Net.Http.HttpContent.<CopyToAsync>g__WaitAsync|46_0(ValueTask copyTask)

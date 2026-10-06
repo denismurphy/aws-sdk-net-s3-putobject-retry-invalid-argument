@@ -1,0 +1,81 @@
+# cmd: dotnet run -c Release -- 200 20 http
+# OS: macOS 27.0 arm64 | .NET runtime 10.0.x | AWSSDK.S3 4.0.104 / AWSSDK.Core 4.0.102.8 | recorded 2026-10-06
+upload 124 FAILED: IOException: Invalid argument : '/tmp/putobject-repro-9k2MAk/part-0124'
+upload 125 FAILED: IOException: Invalid argument : '/tmp/putobject-repro-9k2MAk/part-0125'
+upload 126 FAILED: IOException: Invalid argument : '/tmp/putobject-repro-9k2MAk/part-0126'
+scheme=http uploads=200 busyWorkers=20 resets=200 failedAttempts=400 invalidArgumentAttempts=200 succeeded=124 failed=76 bodiesAccepted=124 bodyMismatches=0
+
+First 'Invalid argument' attempt:
+System.Net.Http.HttpRequestException: Error while copying content to a stream.
+ ---> System.IO.IOException: Invalid argument : '/tmp/putobject-repro-9k2MAk/part-0000'
+   at System.IO.Strategies.FileStreamHelpers.CheckFileCall(Int64 result, String path, Boolean ignoreNotSupported)
+   at System.IO.RandomAccess.ReadAtOffset(SafeFileHandle handle, Span`1 buffer, Int64 fileOffset)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.ThreadPoolValueTaskSource.ExecuteInternal()
+--- End of stack trace from previous location ---
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.ThreadPoolValueTaskSource.GetResult(Int16 token)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.ThreadPoolValueTaskSource.System.Threading.Tasks.Sources.IValueTaskSource<System.Int32>.GetResult(Int16 token)
+   at System.Threading.Tasks.ValueTask`1.ValueTaskSourceAsTask.<>c.<.cctor>b__4_0(Object state)
+--- End of stack trace from previous location ---
+   at Amazon.Runtime.Internal.Util.ChunkedUploadWrapperStream.FillInputBufferAsync(CancellationToken cancellationToken)
+   at Amazon.Runtime.Internal.Util.ChunkedUploadWrapperStream.ReadAsync(Byte[] buffer, Int32 offset, Int32 count, CancellationToken cancellationToken)
+   at System.IO.Stream.<CopyToAsync>g__Core|30_0(Stream source, Stream destination, Int32 bufferSize, CancellationToken cancellationToken)
+   at System.Net.Http.StreamToStreamCopy.<CopyAsync>g__DisposeSourceAsync|1_0(Task copyTask, Stream source)
+   at System.Net.Http.HttpContent.<CopyToAsync>g__WaitAsync|46_0(ValueTask copyTask)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpContent.<CopyToAsync>g__WaitAsync|46_0(ValueTask copyTask)
+   at System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1.AsyncStateMachineBox`1.ExecutionContextCallback(Object s)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1.AsyncStateMachineBox`1.MoveNext(Thread threadPoolThread)
+   at System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1.AsyncStateMachineBox`1.MoveNext()
+   at System.Threading.Tasks.AwaitTaskContinuation.RunOrScheduleAction(IAsyncStateMachineBox box, Boolean allowInlining)
+   at System.Threading.Tasks.Task.RunContinuations(Object continuationObject)
+   at System.Threading.Tasks.Task.TrySetException(Object exceptionObject)
+   at System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1.SetException(Exception exception, Task`1& taskField)
+   at System.Net.Http.StreamToStreamCopy.<CopyAsync>g__DisposeSourceAsync|1_0(Task copyTask, Stream source)
+   at System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1.AsyncStateMachineBox`1.ExecutionContextCallback(Object s)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1.AsyncStateMachineBox`1.MoveNext(Thread threadPoolThread)
+   at System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1.AsyncStateMachineBox`1.MoveNext()
+   at System.Threading.Tasks.AwaitTaskContinuation.RunOrScheduleAction(IAsyncStateMachineBox box, Boolean allowInlining)
+   at System.Threading.Tasks.Task.RunContinuations(Object continuationObject)
+   at System.Threading.Tasks.Task.TrySetException(Object exceptionObject)
+   at System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1.SetException(Exception exception, Task`1& taskField)
+   at System.IO.Stream.<CopyToAsync>g__Core|30_0(Stream source, Stream destination, Int32 bufferSize, CancellationToken cancellationToken)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1.AsyncStateMachineBox`1.MoveNext(Thread threadPoolThread)
+   at System.Threading.Tasks.AwaitTaskContinuation.RunOrScheduleAction(IAsyncStateMachineBox box, Boolean allowInlining)
+   at System.Threading.Tasks.Task.RunContinuations(Object continuationObject)
+   at System.Threading.Tasks.Task.TrySetException(Object exceptionObject)
+   at System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1.SetException(Exception exception, Task`1& taskField)
+   at System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1.SetException(Exception exception)
+   at Amazon.Runtime.Internal.Util.ChunkedUploadWrapperStream.ReadAsync(Byte[] buffer, Int32 offset, Int32 count, CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1.AsyncStateMachineBox`1.ExecutionContextCallback(Object s)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1.AsyncStateMachineBox`1.MoveNext(Thread threadPoolThread)
+   at System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1.AsyncStateMachineBox`1.MoveNext()
+   at System.Threading.Tasks.AwaitTaskContinuation.RunOrScheduleAction(IAsyncStateMachineBox box, Boolean allowInlining)
+   at System.Threading.Tasks.Task.RunContinuations(Object continuationObject)
+   at System.Threading.Tasks.Task.TrySetException(Object exceptionObject)
+   at System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1.SetException(Exception exception, Task`1& taskField)
+   at System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1.SetException(Exception exception)
+   at Amazon.Runtime.Internal.Util.ChunkedUploadWrapperStream.FillInputBufferAsync(CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1.AsyncStateMachineBox`1.ExecutionContextCallback(Object s)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1.AsyncStateMachineBox`1.MoveNext(Thread threadPoolThread)
+   at System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1.AsyncStateMachineBox`1.MoveNext()
+   at System.Threading.Tasks.AwaitTaskContinuation.RunOrScheduleAction(IAsyncStateMachineBox box, Boolean allowInlining)
+   at System.Threading.Tasks.Task.RunContinuations(Object continuationObject)
+   at System.Threading.Tasks.Task.TrySetException(Object exceptionObject)
+   at System.Threading.Tasks.ValueTask`1.ValueTaskSourceAsTask.<>c.<.cctor>b__4_0(Object state)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.ThreadPoolValueTaskSource.System.Threading.IThreadPoolWorkItem.Execute()
+   at System.Threading.ThreadPoolWorkQueue.Dispatch()
+   at System.Threading.PortableThreadPool.WorkerThread.WorkerThreadStart()
+   at System.Threading.Thread.StartCallback()
+--- End of stack trace from previous location ---
+   at System.Net.Http.HttpContent.<CopyToAsync>g__WaitAsync|46_0(ValueTask copyTask)
+   at System.Net.Http.HttpConnection.SendRequestContentAsync(HttpRequestMessage request, HttpContentWriteStream stream, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnection.SendRequestContentWithExpect100ContinueAsync(HttpRequestMessage request, Task`1 allowExpect100ToContinueTask, HttpContentWriteStream stream, Timer expect100Timer, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnection.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at Recorder.SendAsync(HttpRequestMessage request, CancellationToken ct) in Program.cs:line 118
